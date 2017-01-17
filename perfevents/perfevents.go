@@ -69,7 +69,7 @@ type Perfevents struct {
 
 var CGROUP_EVENTS = []string{"cycles", "instructions", "cache-references", "cache-misses",
 	"branch-instructions", "branch-misses", "stalled-cycles-frontend",
-	"stalled-cycles-backend", "ref-cycles"}
+	"stalled-cycles-backend", "ref-cycles", "intel_cqm/llc_occupacy/"}
 
 func Meta() *plugin.PluginMeta {
 	return plugin.NewPluginMeta(name, version, pluginType, []string{plugin.SnapGOBContentType}, []string{plugin.SnapGOBContentType})

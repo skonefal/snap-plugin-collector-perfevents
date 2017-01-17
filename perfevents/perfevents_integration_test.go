@@ -25,6 +25,7 @@ import (
 	"errors"
 	"testing"
 
+	"fmt"
 	"github.com/intelsdi-x/snap/control/plugin"
 	"github.com/intelsdi-x/snap/core"
 	. "github.com/smartystreets/goconvey/convey"
@@ -60,6 +61,14 @@ func TestPerfEventsCollector(t *testing.T) {
 			So(a, ShouldNotBeNil)
 			So(len(a), ShouldEqual, 1)
 			So(a[0].Namespace().Strings(), ShouldResemble, []string{ns_vendor, ns_class, ns_type, ns_subtype, "event1", "cg_root:cg_sub1:cg_sub2"})
+		})
+		Convey("event with slashes with flatten cgroup name", func() {
+			cg := []string{"cg_root/cg_sub1/cg_sub2"}
+			events := []string{"event/slashes/"}
+			a := get_supported_metrics(ns_subtype, cg, events)
+			So(a, ShouldNotBeNil)
+			So(len(a), ShouldEqual, 1)
+			So(a[0].Namespace().Strings(), ShouldResemble, []string{ns_vendor, ns_class, ns_type, ns_subtype, "event/slashes/", "cg_root:cg_sub1:cg_sub2"})
 		})
 	})
 	Convey("CollectMetrics error cases", t, func() {

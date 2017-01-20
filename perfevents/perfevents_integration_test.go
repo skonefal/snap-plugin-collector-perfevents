@@ -25,7 +25,6 @@ import (
 	"errors"
 	"testing"
 
-	"fmt"
 	"github.com/intelsdi-x/snap/control/plugin"
 	"github.com/intelsdi-x/snap/core"
 	. "github.com/smartystreets/goconvey/convey"

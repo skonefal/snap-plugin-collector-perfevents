@@ -39,7 +39,7 @@ const (
 	// Name of plugin
 	name = "perfevents"
 	// Version of plugin
-	version = 9
+	version = 10
 	// Type of plugin
 	pluginType = plugin.CollectorPluginType
 	// Namespace definition
@@ -152,7 +152,7 @@ func (p *Perfevents) CollectMetrics(mts []plugin.MetricType) ([]plugin.MetricTyp
 
 		default:
 			// numeric value is expected
-			if e.value, err = strconv.ParseUint(data[0], 10, 64); err != nil {
+			if e.value, err = strconv.ParseFloat(data[0], 64); err != nil {
 				fmt.Fprintln(os.Stderr, fmt.Sprintf("Invalid metric value for %s:%s, err=%v", e.etype, e.id, err))
 			}
 		}
